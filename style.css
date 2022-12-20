@@ -60,7 +60,9 @@ header {
     align-items: center;
     cursor: pointer;
 }
-
+.focus {
+    border: 2px solid red;
+}
 .button:hover svg{
     color: rgb(140, 30 , 40);
     transform: scale(1.25);

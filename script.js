@@ -40,15 +40,19 @@ async function showResults() {
     const windBox = document.querySelector('.wind')
     const humidityBox = document.querySelector('.humidity')
     const errorBox = document.querySelector('.error-message')
+    const searchBox = document.querySelector('.search')
     const bodyBox = document.querySelector('body')
     let weatherResult = await getLocation()
     if (weatherResult === '404') {
+        searchBox.classList.add('focus')
         errorBox.textContent = 'City not found'
         return showResults()
     } else if(weatherResult === 'ERROR') {
+        searchBox.classList.add('focus')
         errorBox.textContent = 'Something went wrong !'
         return showResults()
     } else if(weatherResult.cod !== 200) {
+        searchBox.classList.add('focus')
         errorBox.textContent = weatherResult;
         console.log('me')
         return showResults()
