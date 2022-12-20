@@ -26,9 +26,10 @@ header {
     row-gap: 5px;
     justify-items: center;
     align-items: stretch;
-    margin-right:90px;
+    margin-right:70px;
 }
 .search {
+    margin-left: min(20%, 40px);
     padding: 2px 15px;
     font-size: 1rem;
     width: 100%;
@@ -77,6 +78,7 @@ main {
     align-items: center;
 }
 .result-container {
+    margin-left: 10%;
     width: 40%;
     max-width: 300px;
     aspect-ratio: 1/ 1;
