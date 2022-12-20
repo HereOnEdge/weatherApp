@@ -4,6 +4,10 @@ async function getWeather(city){
 } 
 // get data from input and fetch the data
 async function getLocation(){
+    let firstRun = false;
+    if(document.querySelector('body').classList.contains('first-run')){
+        firstRun = true
+    }
     let search = new Promise((resolve, reject) => {
         document.querySelector(".button").addEventListener('click', () => {
             let seacrhInput = document.querySelector(".search")
@@ -14,13 +18,20 @@ async function getLocation(){
         })
     })
     try {
-        let cityName = await search
+        let cityName;
+        if(firstRun === true) {
+            cityName = 'tehran'
+        }
+        else if(firstRun === false) {
+            cityName = await search
+        }
         let apiRespond = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=4b8ff3976c38129b270f58272253a7e5&units=metric`, {mode:"cors"})
         let cleanData = await apiRespond.json()
         if(cleanData.cod === '404') {
             return '404'
         }
         console.log(cleanData)
+        document.querySelector('body').classList.remove('first-run')
         return cleanData
         
     }
@@ -62,11 +73,11 @@ async function showResults() {
         }
         errorBox.textContent = ''
         searchBox.value = ''
-        cityNameBox.textContent = weatherResult.name
+        cityNameBox.textContent = `${weatherResult.name}, ${weatherResult.sys.country}`
         weatherBox.textContent = weatherResult.weather[0].main
         tempBox.textContent = Math.floor(weatherResult.main.temp)
         feelsLikeBox.textContent = Math.floor(weatherResult.main.feels_like)
-        windBox.textContent = `${Math.floor((weatherResult.wind.speed * 3.6))}km/h`
+        windBox.textContent = `${Math.floor((weatherResult.wind.speed))}MPH`
         humidityBox.textContent = `${weatherResult.main.humidity}%`
         return showResults()
     }
