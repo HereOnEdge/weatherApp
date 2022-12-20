@@ -39,7 +39,6 @@ header {
     background-color: rgba(80,80,80,0.2);
 }
 .search:focus {
-    border: none;
     outline: none;
 }
 .error-message {

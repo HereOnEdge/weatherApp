@@ -57,6 +57,10 @@ async function showResults() {
         console.log('me')
         return showResults()
     } else {
+        if(searchBox.classList.contains('focus')){
+            searchBox.classList.remove('focus')
+        }
+        errorBox.textContent = ''
         cityNameBox.textContent = weatherResult.name
         weatherBox.textContent = weatherResult.weather[0].main
         tempBox.textContent = Math.floor(weatherResult.main.temp)
