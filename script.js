@@ -61,6 +61,7 @@ async function showResults() {
             searchBox.classList.remove('focus')
         }
         errorBox.textContent = ''
+        searchBox.value = ''
         cityNameBox.textContent = weatherResult.name
         weatherBox.textContent = weatherResult.weather[0].main
         tempBox.textContent = Math.floor(weatherResult.main.temp)
