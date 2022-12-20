@@ -133,8 +133,8 @@ async function showResults() {
         searchBox.value = ''
         cityNameBox.textContent = `${weatherResult.name}, ${weatherResult.sys.country}`
         weatherBox.textContent = weatherResult.weather[0].main
-        tempBox.textContent = Math.floor(weatherResult.main.temp)
-        feelsLikeBox.textContent = Math.floor(weatherResult.main.feels_like)
+        tempBox.innerHTML = `${Math.floor(weatherResult.main.temp)} <span class="unit-container"><span class="degree">o</span><span class="unit">C</span></span>`
+        feelsLikeBox.innerHTML = `${Math.floor(weatherResult.main.feels_like)}<span class="unit-container"><span class="degree" id="degree">o</span><span class="unit">C</span></span>`
         windBox.textContent = `${Math.floor((weatherResult.wind.speed))}MPH`
         humidityBox.textContent = `${weatherResult.main.humidity}%`
         timeZone = ((weatherResult.timezone / 60) / 60)

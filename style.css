@@ -1,5 +1,5 @@
 body {
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -90,7 +90,7 @@ main {
 .result-container {
     flex: 0 1 auto;
     height: 450px;
-    margin-left: 10%;
+    margin-left: 5%;
     width: 90%;
     min-width: 270px;
         /* max-width: 300px;
@@ -133,12 +133,13 @@ main {
 }
 .left {
     height: 50%;
-    width: 50%;
+    min-width: 150px;
     display: flex;
     justify-content: start;
     align-items: flex-start;
 }
 .temp {
+    position: relative;
     width: 100%;
     height: 100%;
     font-weight: 900;
@@ -150,6 +151,31 @@ main {
     border-color: #777777;
     border-style: solid;
     box-sizing: border-box;
+}
+.temp .degree {
+    font-size: 1rem;
+    font-weight: 600;
+}
+.temp .unit-container{
+    height: 30px;
+}
+.unit-container {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: -45px;
+    right: 10px;
+}
+#degree {
+    font-size: 1rem;
+    width: 16px;
+    font-weight: 600;
+    text-align: center;
+}
+.unit {
+    font-size: 1.2rem;
+    font-weight: 600;
 }
 .right {
     height: 80%;
@@ -171,6 +197,19 @@ main {
 }
 .right span span {
     width: 40px;
+}
+.like {
+    position: relative;
+}
+.like .unit-container {
+    right: -15px;
+    top: -15px;
+}
+.like .unit-container #degree {
+    font-size: 0.6rem;
+}
+.like .unit-container .unit {
+    font-size: 0.8rem;
 }
 @keyframes searchButton {
     0% {transform: scale(1);}
