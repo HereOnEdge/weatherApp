@@ -85,13 +85,20 @@ async function getLocation(){
     if(document.querySelector('body').classList.contains('first-run')){
         firstRun = true
     }
+    const seacrhInput = document.querySelector(".search")
+    const searchButton = document.querySelector('.button') 
     let search = new Promise((resolve, reject) => {
-        document.querySelector(".button").addEventListener('click', () => {
-            let seacrhInput = document.querySelector(".search")
+        searchButton.addEventListener('click', () => {
             
             seacrhInput.value === '' ? reject('!valid') :
             seacrhInput.value.length <= 2 ? reject('!valid') :
             resolve(seacrhInput.value) 
+        })
+        // click search button on Enter button click
+        seacrhInput.addEventListener('keypress', (event) => {
+            if(event.key === 'Enter') {
+                searchButton.click()
+            }
         })
     })
     try {
