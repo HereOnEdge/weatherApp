@@ -167,11 +167,13 @@ async function showResults() {
         locationTime = UTC_time + timeZone
         bodyBox.style.backgroundImage = `url(${showBackground(locationTime, weatherResult.weather[0].main)})`
         if(document.querySelector('.main-loading-container')){
-            document.querySelector('.main-loading-container').remove()
+            setTimeout(() => {
+                document.querySelector('.main-loading-container').remove()
+            }, 2000);
         }
         setTimeout(() => {
-            resultContainer.classList.remove('appearing')
         }, 2000);
+        resultContainer.classList.remove('appearing')
         console.log(bodyBox)
         console.log(showBackground(locationTime, weatherResult.weather[0].main))
         console.log(timeZone)
