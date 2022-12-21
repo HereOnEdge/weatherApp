@@ -16,7 +16,7 @@ function loading() {
     loading.innerHTML = '<div class = "snow">*</div><div class = "snow">*</div><div class = "snow">*</div><div class = "snow">*</div><div class = "snow">*</div>'
     loadContainer.appendChild(loading)
 
-    return console.log('i did my fucking job')
+    // return console.log('i did my fucking job')
     
 } 
 loading()
@@ -60,7 +60,6 @@ function showBackground(locationTime, weather) {
     if(locationTime >= 18 || locationTime <= 5) {
         isNight = true
     }
-    console.log(isNight)
     // change font colors on different backgrounds
     if (isNight === true || weather === 'Rain' || weather === 'Snow') {
         body.style.color = '#dddddd'
@@ -87,11 +86,12 @@ async function getLocation(){
     }
     const seacrhInput = document.querySelector(".search")
     const searchButton = document.querySelector('.button') 
+    const loadingSearch = document.querySelector('.search-load')
     let search = new Promise((resolve, reject) => {
         searchButton.addEventListener('click', () => {
-            
             seacrhInput.value === '' ? reject('!valid') :
             seacrhInput.value.length <= 2 ? reject('!valid') :
+            loadingSearch.style.display = 'inline-block'
             resolve(seacrhInput.value) 
         })
         // click search button on Enter button click
@@ -113,9 +113,9 @@ async function getLocation(){
         let apiRespond = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=4b8ff3976c38129b270f58272253a7e5&units=metric`, {mode:"cors"})
         let cleanData = await apiRespond.json()
         if(cleanData.cod === '404') {
+            loadingSearch.style.display = 'none'
             return '404'
         }
-        console.log(cleanData)
         document.querySelector('body').classList.remove('first-run')
         return cleanData
         
@@ -139,6 +139,7 @@ async function showResults() {
     const searchBox = document.querySelector('.search')
     const bodyBox = document.querySelector('body')
     const resultContainer = document.querySelector('.result-container')
+    const loadingSearch = document.querySelector('.search-load')
     let timeZone
     let UTC_time
     let locationTime
@@ -155,12 +156,12 @@ async function showResults() {
     } else if(weatherResult.cod !== 200) {
         searchBox.classList.add('focus')
         errorBox.textContent = weatherResult;
-        console.log('me')
         return showResults()
     } else {
         if(searchBox.classList.contains('focus')){
             searchBox.classList.remove('focus')
         }
+        loadingSearch.style.display = 'none'
         errorBox.textContent = ''
         searchBox.value = ''
         cityNameBox.textContent = `${weatherResult.name}, ${weatherResult.sys.country}`
@@ -189,10 +190,6 @@ async function showResults() {
             }, 2000);
             
         }
-        console.log(bodyBox)
-        console.log(showBackground(locationTime, weatherResult.weather[0].main))
-        console.log(timeZone)
-        console.log(UTC_time)
         return showResults()
     }
 }
