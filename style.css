@@ -1,4 +1,5 @@
 body {
+    position: relative;
     min-height: 100vh;
     width: 100vw;
     display: flex;
@@ -8,6 +9,71 @@ body {
     background-size: cover;
     background-position: 50% 50%;
     background-repeat: no-repeat;
+}
+.main-loading-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: orange;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loading-container {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: center;
+}
+.cloud-div {
+    flex: 1 0 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    max-height: 50px;
+}
+.cloud-div svg {
+    width: 100px;
+    height: 70px;
+}
+.loading {
+    flex: 1 1 20px;
+    width: 50%;
+    max-height: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.snow {
+    width: 8px;
+    height: 8px;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: snowyCloud 1.5s infinite ;
+}
+.snow:nth-child(2), .snow:nth-child(4){
+    
+}
+.snow:nth-child(1) {
+    animation-delay: 0.2s;
+}
+.snow:nth-child(2) {
+    animation-delay: 0.7s;
+}
+.snow:nth-child(3) {
+    animation-delay: 0.5s;
+}
+.snow:nth-child(5) {
+    animation-delay: 0.8s;
 }
 header {
     width: 100%;
@@ -216,4 +282,12 @@ main {
     50% {transform: scale(0.75);}
     75% {transform: scale(1);}
     100%{transform: scale(1.25);}
+}
+
+@keyframes snowyCloud {
+    0% {opacity: 0;}
+    10% {opacity: 0.8;}
+    50% ,70% {opacity: 1;}
+    90% {opacity: 0.1;}
+    100% {transform: translateY(20px); opacity: 0;}
 }
