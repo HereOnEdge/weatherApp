@@ -97,6 +97,7 @@ async function getLocation(){
         // click search button on Enter button click
         seacrhInput.addEventListener('keypress', (event) => {
             if(event.key === 'Enter') {
+                loadingSearch.style.display = 'inline-block'
                 searchButton.click()
                 seacrhInput.blur()
             }
