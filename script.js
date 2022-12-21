@@ -130,6 +130,7 @@ async function showResults() {
     const errorBox = document.querySelector('.error-message')
     const searchBox = document.querySelector('.search')
     const bodyBox = document.querySelector('body')
+    const resultContainer = document.querySelector('.result-container')
     let timeZone
     let UTC_time
     let locationTime
@@ -154,6 +155,7 @@ async function showResults() {
         }
         errorBox.textContent = ''
         searchBox.value = ''
+        resultContainer.classList.add('appearing')
         cityNameBox.textContent = `${weatherResult.name}, ${weatherResult.sys.country}`
         weatherBox.textContent = weatherResult.weather[0].main
         tempBox.innerHTML = `${Math.floor(weatherResult.main.temp)} <span class="unit-container"><span class="degree">o</span><span class="unit">C</span></span>`
@@ -167,6 +169,9 @@ async function showResults() {
         if(document.querySelector('.main-loading-container')){
             document.querySelector('.main-loading-container').remove()
         }
+        setTimeout(() => {
+            resultContainer.classList.remove('appearing')
+        }, 2000);
         console.log(bodyBox)
         console.log(showBackground(locationTime, weatherResult.weather[0].main))
         console.log(timeZone)
