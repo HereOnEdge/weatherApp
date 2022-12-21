@@ -155,7 +155,6 @@ async function showResults() {
         }
         errorBox.textContent = ''
         searchBox.value = ''
-        resultContainer.classList.add('appearing')
         cityNameBox.textContent = `${weatherResult.name}, ${weatherResult.sys.country}`
         weatherBox.textContent = weatherResult.weather[0].main
         tempBox.innerHTML = `${Math.floor(weatherResult.main.temp)} <span class="unit-container"><span class="degree">o</span><span class="unit">C</span></span>`
@@ -169,11 +168,19 @@ async function showResults() {
         if(document.querySelector('.main-loading-container')){
             setTimeout(() => {
                 document.querySelector('.main-loading-container').remove()
+                resultContainer.classList.add('appearing')
+                setTimeout(() => {
+                    resultContainer.classList.remove('appearing')
+                }, 2000);
+            }, 2000)
+            
+        } else {
+            resultContainer.classList.add('appearing')
+            setTimeout(() => {
+                resultContainer.classList.remove('appearing')
             }, 2000);
+            
         }
-        setTimeout(() => {
-        }, 2000);
-        resultContainer.classList.remove('appearing')
         console.log(bodyBox)
         console.log(showBackground(locationTime, weatherResult.weather[0].main))
         console.log(timeZone)
