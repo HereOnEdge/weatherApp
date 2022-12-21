@@ -98,6 +98,7 @@ async function getLocation(){
         seacrhInput.addEventListener('keypress', (event) => {
             if(event.key === 'Enter') {
                 searchButton.click()
+                seacrhInput.blur()
             }
         })
     })
